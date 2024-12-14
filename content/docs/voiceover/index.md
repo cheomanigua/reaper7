@@ -4,6 +4,10 @@ date: 2019-02-11T19:27:37+10:00
 weight: 100
 ---
 
+This article is divided in two section. The first section explains how to record voice over, and the second section explains how to post process the recording.
+
+# 1. Recording
+
 ## Audio Device
 
 You must first setup Reaper for your audio interface:
@@ -11,22 +15,44 @@ You must first setup Reaper for your audio interface:
 1. Plug in your audio interface to your computer.
 2. Plug in your microphone to the audio interface.
 3. Plug in your headphones to the audio interface.
-4. **Options** -> **Preferences** -> **Audio** -> **Device**
+4. Go to **Options** -> **Preferences** -> **Audio** -> **Device**
 5. Select your **Audio System** from the drop down menu (*ALSA* in the image below).
-6. Select your audio interface as **Input device** and **Output device** from the drop down menu (*MiniFuse 1* in the image below).
+6. Select your audio interface for **Input device** and **Output device** from the drop down menu (*MiniFuse 1* in the image below).
 7. Click **OK** button.
 
 ![voice over device](voiceoverdevice.webp)
 
+## Recording audio
+
+1. Create a new track.
+2. Arm the track by clicking on the red circle button of the track.
+3. If you are using a condenser microphone, don't forget to switch on Phantom Power in your audio interface.
+4. Check the levels of the track (red level meter vertical bars) and tweek the **Gain** knob of your audio interface to set the levels of the track bewteen **-12.00 dB** and **-6.00 dB** while you do a talking test.
+5. When you are ready, click on the record button in the transport section to start the recording and let it to record in silence for several seconds before speaking. This initial seconds will be used later during post processing for noise reduction effects.
+6. When you finish your speech, click on the record button again in the transport section to stop the recording.
+7. It is also a good practise to disarm the track by clicking again on the red circle button of the track before we start the post processing workflow in the next section.
+
+# 2. Post Processing
+
 ## Monitoring
 
-During this example, I'll be using two different tools to check the levels for the track and for the whole project.
+During this example, I'll be using two different tools to check the levels for the track and for the whole project:
 
-**Loudness Meter Peak** is used only to monitor the **Track** levels. *Loudness Meter Peak* can be added as an effect to a track, and must be added as the last effect in order to monitor all the effect of the track.
+- **Loudness Meter Peak** is used only to monitor the **Track** levels. *Loudness Meter Peak* can be added as an effect to a track, and must be added as the last effect in order to monitor all the effect of the track.
 
-**Dry Run** can be used to monitor either a track levels or the whole project levels. You can launch **Dry Run** by going to **File** -> **Render** -> **Dry run (no output)**. In order to monitor the whole project or to monitor only a track, select either `Master mix` or `Selected tracks (stems)` respectively from the **Source** drop down menu. Once you have selected your source, click on the `Dry run (no output` button at the bottom.
+- **Dry Run** can be used to monitor either a track levels or the whole project levels. You can launch **Dry Run** by going to **File** -> **Render** -> **Dry run (no output)**. In order to monitor the whole project or to monitor only a track, select either `Master mix` or `Selected tracks (stems)` respectively from the **Source** drop down menu. Once you have selected your source, click on the `Dry run (no output` button at the bottom.
 
 Note that both tools will show different values once you start adding effects to a track if you've set up `Master mix` as source, so it is **very important that you are aware** wheter you are launching **Dry Run** for the whole project (`Master mix`) or for a track (`Selected tracks (stems)`).
+
+## Workflow
+
+This is the order of actions and effects necessary to edit a Voice Over project:
+
+1. Normalization (Action on track)
+2. Noise reduction (FXs on track)
+3. Compression (FX on track)
+4. Equalization (FX on track)
+5. Limitation (FX on Master - Optional)
 
 ## Actions
 
@@ -80,14 +106,14 @@ Full list of stock Reaper effects: [Click here](https://wiki.cockos.com/wiki/ind
 ![reafir settings](reafir.webp)
 
 1. Change the `mode` to **Substract**, the `edit Mode` to **Precise** and the `FFT Size` to **512** or **1024**.
-2. Record/play a silence section of the track and then tick the box `Automatically build noise profile`. The noise profile will be drawn until you untick the box again. After that you can adjust the profile graph up and down by holding the CTRL key while dragging the graph with the mouse.
+2. Play a silence section of the track and then tick the box `Automatically build noise profile`. The noise profile will be drawn until you untick the box again. After that you can adjust the profile graph up and down by holding the CTRL key while dragging the graph with the mouse.
 
 
 ### 2. ReaGate
 
 ![reagate settings](reagate.webp)
 
-To get the correct ReaGate threshold (in the picture above is `-26.2`), you must record/play a few seconds of the lower levels of the track in order to silence those levels. After this you can tweek the threshold slider until the sound dissapears without affecting the main subject levels.
+To get the correct ReaGate threshold (in the picture above is `-26.2`), you must play a few seconds of the lower levels of the track in order to silence those levels. After this you can tweek the threshold slider until the sound dissapears without affecting the main subject levels.
 
 ### 3. 1175 Compressor
 
